@@ -1,14 +1,13 @@
 import os
-
 from flask import Flask
 from flask import redirect
 from flask import render_template
 from flask import request
-
 from flask_sqlalchemy import SQLAlchemy
 
 project_dir = os.path.dirname(os.path.abspath(__file__))
 database_file = "sqlite:///{}".format(os.path.join(project_dir, "bookdatabase.db"))
+
 
 app = Flask(__name__)
 app.config["SQLALCHEMY_DATABASE_URI"] = database_file
@@ -52,6 +51,7 @@ def home():
     authors = Author.query.all()
     return render_template("home.html", books=books, authors=authors)
 
+
 @app.route('/author', methods=["GET", "POST"])
 def author():
     authors = None
@@ -68,6 +68,7 @@ def author():
     authors = Author.query.all()
     return render_template("home.html", books=books, authors=authors)
 
+
 @app.route("/update", methods=["POST"])
 def update():
     try:
@@ -83,7 +84,7 @@ def update():
 
 
 @app.route("/updateauthor", methods=["POST"])
-def updateauthor():
+def update_author():
     try:
         oldID = request.form.get("oldID")
         newauthorid = request.form.get("newauthorid")
@@ -97,7 +98,7 @@ def updateauthor():
     return redirect("/")
 
 @app.route("/updatename", methods=["POST"])
-def updatename():
+def update_name():
     try:
         oldid = request.form.get("oldaid")
         newaname = request.form.get("newaname")
