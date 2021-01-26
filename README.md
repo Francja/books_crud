@@ -1,6 +1,6 @@
 
 ### Goals of application
-tbd
+Simple online book CRUD built with python, flask and sqlalchemy for university project
 ### Requirments
 * Python 3.7 
 ### How to run
